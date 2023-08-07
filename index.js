@@ -6,8 +6,10 @@ const conn = require('./services/database');
 
 // IMPORTAMOS LOS MODELOS DE TABLAS
 // Modelo de Usuarios
-const usuariosModel = require('./models/usuariosModel');
-
+const Usuarios = require('./models/usuariosModel');
+const FormularioDeConsultas = require('./models/formularioModel');
+const Pedidos = require('./models/pedidosModel');
+const Productos = require('./models/productosModel');
 
 //Creamos las conexiones de las tablas entre si
 // Definimos las asociaciones
@@ -40,7 +42,10 @@ const database = async () => {
         await conn.authenticate();
         console.log('Base de datos conectada')
         //Generamos la sincronizacion de nuestro modelo con la base de datos (compatibiliza la tabla, si no existe, la crea)
-        await usuariosModel.sync({force: true});
+        await Usuarios.sync({force: true});
+        await Pedidos.sync({force: true});
+        //await FormularioDeConsultas.sync({force: true});
+        //await Productos.sync({force: true});
     } 
     catch (error) {
         console.log('Algo salio mal con la conexion', error)

@@ -1,5 +1,5 @@
 // Importamos los tipos de datos de sequelize (que modela un sistema SQL) para definir nuestro modelo.
-import {DataTypes, ENUM} from 'sequelize';
+const {DataTypes} = require('sequelize');
 // Importamos la base de datos para manipularla
 const database = require('../services/database.js');
 
@@ -12,7 +12,6 @@ const Pedidos = database.define(
             defaultValue: DataTypes.UUIDV4,
             primaryKey: true,
             allowNull: false,
-            unique: true,
             
         },
         // Lo mismo que en la anterior, falta enlazar llaves foraneas y asegurarse que se enlacen
@@ -30,7 +29,7 @@ const Pedidos = database.define(
         },
         idProductos:
         {
-            type: DataTypes.STRING,
+            type: DataTypes.ARRAY(DataTypes.STRING),
             allowNull: false,
             validate:
             {
@@ -41,7 +40,7 @@ const Pedidos = database.define(
         },
         Cantidades:
         {
-            type: DataTypes.NUMBER,
+            type: DataTypes.INTEGER,
             allowNull: false,
             validate:
             {
@@ -52,7 +51,7 @@ const Pedidos = database.define(
         },
         Estado:
         {
-            type: DataTypes.ENUM('PENDIENTE', 'CONFIRMADO', 'ENVIADO', 'ENTREAGADO', 'ANULADO'),
+            type: DataTypes.ENUM('PENDIENTE', 'CONFIRMADO', 'ENVIADO', 'ENTREGADO', 'ANULADO'),
             primaryKey: true,
             allowNull: false,
             defaultValue: 'PENDIENTE'
