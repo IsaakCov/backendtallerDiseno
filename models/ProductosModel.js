@@ -8,7 +8,7 @@ const Productos = database.define(
     {
         idProducto:
         {
-            type: DataTypes.UUIDV4,
+            type: DataTypes.UUID,
             defaultValue: DataTypes.UUIDV4,
             primaryKey: true,
             allowNull: false,
@@ -28,7 +28,7 @@ const Productos = database.define(
         },
         Precio:
         {
-            type: DataTypes.NUMBER,
+            type: DataTypes.FLOAT,
             allowNull: false,
             validate:
             {
@@ -39,7 +39,7 @@ const Productos = database.define(
         },
         Stock:
         {
-            type: DataTypes.NUMBER
+            type: DataTypes.INTEGER
         },
         Medidas:
         {
@@ -54,7 +54,7 @@ const Productos = database.define(
         },
         Imagen:
         {
-            type: DataTypes.BLOB,
+            type: DataTypes.STRING, // Almacenamos la direccion
             allowNull: false,
             validate:
             {

@@ -8,7 +8,7 @@ const FormularioDeConsultas = database.define(
     {
         idConsulta:
         {
-            type: DataTypes.UUIDV4,
+            type: DataTypes.UUID,
             defaultValue: DataTypes.UUIDV4,
             primaryKey: true,
             allowNull: false,
@@ -25,18 +25,18 @@ const FormularioDeConsultas = database.define(
                 }
             }
         },
-        // Falta enlazar la llave foranea y preguntar como hacer para que compartan datos
-        CorreoUsuario:
-        {
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate:
-            {
-                notNull: {
-                    msg: 'El correo es obligatorio.'
-                }
-            }
-        }
+        // Opcion de crear ID y hacer los cambios respectivos
+         CorreoUsuario:
+         {
+             type: DataTypes.STRING,
+             allowNull: false,
+             validate:
+             {
+                 notNull: {
+                     msg: 'El correo es obligatorio.'
+                 }
+             }
+         }
 
     },
     {

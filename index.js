@@ -6,11 +6,11 @@ const conn = require('./services/database');
 
 // IMPORTAMOS LOS MODELOS DE TABLAS
 // Modelo de Usuarios
-const Usuarios = require('./models/usuariosModel');
-const FormularioDeConsultas = require('./models/formularioModel');
-const Pedidos = require('./models/pedidosModel');
-const Productos = require('./models/productosModel');
-
+const Usuarios = require('./models/usuariosModel.js');
+const FormularioDeConsultas = require('./models/formularioModel.js');
+const Pedidos = require('./models/pedidosModel.js');
+const Productos = require('./models/productosModel.js');
+const PedidoProductos = require('./models/pedidoProductosModel.js')
 //Creamos las conexiones de las tablas entre si
 // Definimos las asociaciones
 Usuarios.hasMany(FormularioDeConsultas, { foreignKey: 'CorreoUsuario' });
@@ -43,9 +43,11 @@ const database = async () => {
         console.log('Base de datos conectada')
         //Generamos la sincronizacion de nuestro modelo con la base de datos (compatibiliza la tabla, si no existe, la crea)
         await Usuarios.sync({force: true});
+        await Productos.sync({force: true});
         await Pedidos.sync({force: true});
-        //await FormularioDeConsultas.sync({force: true});
-        //await Productos.sync({force: true});
+        await FormularioDeConsultas.sync({force: true});
+        
+        //await PedidoProductos.sync({force: true});
     } 
     catch (error) {
         console.log('Algo salio mal con la conexion', error)
