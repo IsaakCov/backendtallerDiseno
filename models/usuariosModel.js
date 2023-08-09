@@ -65,6 +65,12 @@ const Usuarios = database.define(
                 }
             }
 
+        },
+        Role:
+        {
+            type: DataTypes.ENUM['USUARIO', 'ADMINISTRADOR'],
+            allowNull: false,
+            defaultValue: 'USUARIO'
         }
         
     },
